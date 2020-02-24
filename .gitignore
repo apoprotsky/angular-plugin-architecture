@@ -45,5 +45,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/builders/plugin-builder/index.js
-/src/assets/plugins
+/builder/index.js
+/app/assets/plugins
