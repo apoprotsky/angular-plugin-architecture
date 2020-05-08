@@ -1,39 +1,33 @@
-import {
-  BrowserModule,
-  BrowserTransferStateModule
-} from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { PluginLoaderService } from './services/plugin-loader/plugin-loader.service';
-import { ClientPluginLoaderService } from './services/plugin-loader/client-plugin-loader.service';
-import { PluginsConfigProvider } from './services/plugins-config.provider';
-import { TransferStateService } from './services/transfer-state.service';
+import { PluginsService } from './plugins.service';
+import { PluginsProvider } from './plugins.provider';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    BrowserModule,
     HttpClientModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    BrowserTransferStateModule
   ],
   providers: [
-    { provide: PluginLoaderService, useClass: ClientPluginLoaderService },
-    PluginsConfigProvider,
+    PluginsService,
+    PluginsProvider,
     {
       provide: APP_INITIALIZER,
-      useFactory: (provider: PluginsConfigProvider) => () =>
+      useFactory: (provider: PluginsProvider) => () =>
         provider
           .loadConfig()
           .toPromise()
           .then(config => (provider.config = config)),
       multi: true,
-      deps: [PluginsConfigProvider]
+      deps: [PluginsProvider]
     }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(transferStateService: TransferStateService) {}
+  constructor() {}
 }

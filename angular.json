@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "angular-plugin-architecture": {
+    "app": {
       "root": "",
       "sourceRoot": "app",
       "projectType": "application",
@@ -18,7 +18,7 @@
             "index": "app/index.html",
             "main": "app/main.ts",
             "polyfills": "app/polyfills.ts",
-            "tsConfig": "app/tsconfig.app.json",
+            "tsConfig": "app/tsconfig.json",
             "assets": [
               "app/favicon.ico",
               "app/assets"
@@ -66,11 +66,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-plugin-architecture:build"
+            "browserTarget": "app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-plugin-architecture:build:production"
+              "browserTarget": "app:build:production"
             }
           }
         }
@@ -90,7 +90,7 @@
             "index": "",
             "main": "plugins/main.ts",
             "polyfills": "plugins/polyfills.ts",
-            "tsConfig": "plugins/tsconfig.app.json",
+            "tsConfig": "plugins/tsconfig.json",
             "assets": [],
             "styles": [],
             "scripts": []
@@ -128,17 +128,17 @@
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "shared/tsconfig.lib.json",
+            "tsConfig": "shared/tsconfig.json",
             "project": "shared/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "shared/tsconfig.lib.prod.json"
+              "tsConfig": "shared/tsconfig.prod.json"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-plugin-architecture"
+  "defaultProject": "app"
 }

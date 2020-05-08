@@ -1,7 +1,5 @@
 import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
-import { preserveServerState } from './transfer-state.service';
 import { isPlatformBrowser } from '@angular/common';
 
 interface PluginsConfig {
@@ -13,7 +11,7 @@ interface PluginsConfig {
 }
 
 @Injectable()
-export class PluginsConfigProvider {
+export class PluginsProvider {
   config: PluginsConfig;
 
   constructor(
@@ -26,10 +24,7 @@ export class PluginsConfigProvider {
     }
   }
 
-  @preserveServerState('PLUGIN_CONFIGS')
   loadConfig() {
-    return this.http.get<PluginsConfig>(
-      `${this.baseUrl}/assets/plugins-config.json`
-    );
+    return this.http.get<PluginsConfig>(`${this.baseUrl}/assets/plugins.json`);
   }
 }

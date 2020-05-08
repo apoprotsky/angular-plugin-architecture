@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver
 } from '@angular/core';
-import { PluginLoaderService } from './services/plugin-loader/plugin-loader.service';
+import { PluginsService } from './plugins.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private injector: Injector,
-    private pluginLoader: PluginLoaderService,
+    private pluginLoader: PluginsService,
     private cfr: ComponentFactoryResolver
   ) {}
 
